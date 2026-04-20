@@ -1,111 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SachinAnime | The Ultimate Anime Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SachinAnime | Secure Portal</title>
     <style>
         :root {
-            /* Cai Lin's Fire Theme Colors */
-            --medusa-red: #da2131; /* Golden Red */
-            --royal-gold: #ffcf4b; /* Gold */
+            --medusa-red: #da2131;
+            --royal-gold: #ffcf4b;
             --dark-bg: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.1);
         }
         body {
-            background: var(--dark-bg);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://raw.githubusercontent.com/Sachin-Anime-Codes/sachinanime.github.io/main/medusa.png'); /* Yahan apni image ka link dalo */
+            background-size: cover;
+            background-attachment: fixed;
             color: white;
             font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .header {
-            width: 100%;
-            padding: 30px;
             text-align: center;
-            /* Fire effect on header */
-            background: linear-gradient(to bottom, var(--medusa-red), transparent);
-            box-shadow: 0 4px 15px rgba(218, 33, 49, 0.4);
         }
-        .logo-text {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--royal-gold);
-            text-shadow: 0 0 15px var(--medusa-red);
-            font-family: 'Calligraphy', cursive; /* Optional, requires a specific font */
-        }
-        .tagline {
-            font-size: 1rem;
-            margin-top: -10px;
-            opacity: 0.8;
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin-top: 50px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background: var(--glass);
+        .glass-box {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            transition: 0.3s ease-in-out;
-            text-align: center;
+            border: 1px solid var(--royal-gold);
+            padding: 40px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 400px;
+            margin: 100px auto;
+            box-shadow: 0 0 20px var(--medusa-red);
         }
-        .card:hover {
-            border-color: var(--royal-gold);
-            transform: translateY(-8px);
-            box-shadow: 0 5px 20px rgba(255, 207, 75, 0.2);
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--medusa-red);
+            color: white;
+            border-radius: 5px;
         }
         .btn {
             background: var(--medusa-red);
             color: white;
             padding: 12px 25px;
+            border: none;
             border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            border: 2px solid transparent;
+            cursor: pointer;
             font-weight: bold;
-        }
-        .btn:hover {
-            background: transparent;
-            border-color: var(--royal-gold);
-            color: var(--royal-gold);
         }
     </style>
 </head>
 <body>
-
-    <div class="header">
-        <div class="logo-text">SachinAnime</div>
-        <p class="tagline">Explore the World of Anime, Tech, and Freedom!</p>
-    </div>
-
-    <div class="container">
-        <div class="card">
-            <h3>🔍 Omni-Search</h3>
-            <p>One search to find Anime, Movies, and Termux Scripts!</p>
-            <input type="text" placeholder="Search content..." style="padding:10px; border-radius:5px; border:none; width:80%;">
-            <a href="#" class="btn">Search</a>
-        </div>
-        <div class="card">
-            <h3>🎥 Telegram Stream</h3>
-            <p>Copyright free downloads via direct links.</p>
-            <a href="#" class="btn">Explore Files</a>
-        </div>
-        <div class="card">
-            <h3>🛡️ Copyright Disclaimer</h3>
-            <p>We believe in open-source content and freedom of access.</p>
-            <a href="#" class="btn">Read DMCA</a>
+    <div class="glass-box" id="login-box">
+        <h2>🔥 SACHIN ANIME 🔥</h2>
+        <p>Accessing 5TB Secure Storage</p>
+        <input type="email" id="email" placeholder="Enter Email">
+        <button class="btn" onclick="requestOTP()">Get OTP</button>
+        <div id="otp-area" style="display:none;">
+            <input type="text" id="otp" placeholder="Enter 6-Digit OTP">
+            <button class="btn" onclick="verifyLogin()">Unlock Dashboard</button>
         </div>
     </div>
 
+    <script>
+        async function requestOTP() {
+            // Ye tumhare Termux server (localhost:8080) se connect karega
+            const res = await fetch('http://localhost:8080/get-otp', {method: 'POST'});
+            if(res.ok) {
+                alert('Check Termux console for OTP!');
+                document.getElementById('otp-area').style.display = 'block';
+            }
+        }
+        // Verification logic yahan aayega
+    </script>
 </body>
 </html>
+
+
